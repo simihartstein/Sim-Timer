@@ -1,0 +1,53 @@
+﻿<UserControl
+    x:Class="Sim_Timer.Timer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sim_Timer"
+	xmlns:controls="using:Sim_Timer.Controls"
+	xmlns:converter="using:Sim_Timer.Converters"
+	xmlns:trigger="using:Sim_Timer.CustomTriggers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+	x:Name="timer">
+	<Grid>
+		<Grid.Resources>
+			<converter:MultiplyConverter x:Key="MultiplyConverter" />
+		</Grid.Resources>
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup>
+				<VisualState>
+					<VisualState.StateTriggers>
+						<trigger:ControlOrientationTrigger TargetElement="{x:Bind timer}" MaxWidthHeightRatio="1.8"/>
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="vb1.MaxHeight" Value="120"/>
+						<Setter Target="vb2.MaxHeight" Value="120"/>
+					</VisualState.Setters>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Viewbox>
+			<controls:NumericTextBox MaxNumber="99" InputScope="TimeMinutesOrSeconds" FontSize="36" BorderBrush="{x:Null}"/>
+		</Viewbox>
+		<Viewbox Grid.Column="1" x:Name="vb1">
+			<TextBlock x:Name="colonHMAdaptive" Text=":" FontSize="36" Padding="0,0,0,8"/>
+		</Viewbox>
+		<Viewbox Grid.Column="2">
+			<controls:NumericTextBox MaxNumber="59" InputScope="TimeMinutesOrSeconds" FontSize="36" BorderBrush="{x:Null}"/>
+		</Viewbox>
+		<Viewbox Grid.Column="3" x:Name="vb2">
+			<TextBlock x:Name="colonMSAdaptive" Text=":" FontSize="36" Padding="0,0,0,8"/>
+		</Viewbox>
+		<Viewbox Grid.Column="4">
+			<controls:NumericTextBox MaxNumber="59" InputScope="TimeMinutesOrSeconds" FontSize="36" BorderBrush="{x:Null}"/>
+		</Viewbox>
+	</Grid>
+</UserControl>
